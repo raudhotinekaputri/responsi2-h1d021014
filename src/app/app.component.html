@@ -21,13 +21,11 @@
               ></ion-icon>
               <ion-label>Inventory List</ion-label>
             </ion-item>
-            
-            <!-- Tambahkan menu untuk fitur inventaris lainnya jika diperlukan -->
-            <!-- Contoh: -->
-            <!--
+
+            <!-- Add a new menu item for logout -->
             <ion-item
               routerDirection="root"
-              [routerLink]="['/other-inventory-feature']"
+              [routerLink]="['/dashboard']"
               lines="none"
               detail="false"
               routerLinkActive="selected"
@@ -35,12 +33,11 @@
               <ion-icon
                 aria-hidden="true"
                 slot="start"
-                ios="add-outline"
-                md="add-sharp"
+                ios="exit-outline"
+                md="exit-sharp"
               ></ion-icon>
-              <ion-label>Other Inventory Feature</ion-label>
+              <ion-label>Logout</ion-label>
             </ion-item>
-            -->
           </ion-menu-toggle>
         </ion-list>
       </ion-content>

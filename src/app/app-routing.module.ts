@@ -1,10 +1,14 @@
+
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { AutoLoginGuard } from './guards/auto-login.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -13,7 +17,18 @@ const routes: Routes = [
   },
   {
     path: 'inventory',
-    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule)
+    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule),
+    canLoad: [AuthGuard] 
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m =>
+   m.LoginPageModule),
+    canLoad: [AutoLoginGuard]
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 
