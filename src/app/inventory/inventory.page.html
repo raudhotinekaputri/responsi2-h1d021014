@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Data Inventaris</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of dataInventory">
+    <ion-item>
+      <ion-label>
+        {{item.name}}
+        <p>{{item.description}}</p>
+        <p>Quantity: {{item.quantity}}</p>
+      </ion-label>
+      <ion-button color="success" slot="end" (click)="hapusInventory(item.id)">Hapus</ion-button>
+      <ion-button expand="block" (click)="open_modal_edit(true, item.id)" color="tertiary">Edit</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-button (click)="open_modal_tambah(true)" expand="block" color="secondary">Tambah Inventaris</ion-button>
+  </ion-card>
+
+  <!-- Modal Tambah -->
+  <ion-modal [isOpen]="modal_tambah">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Batal</ion-button>
+          </ion-buttons>
+          <ion-title>Tambah Inventaris</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input label="Nama Inventaris" labelPlacement="floating" required [(ngModel)]="nama"
+            placeholder="Masukkan Nama Inventaris" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Deskripsi Inventaris' labelPlacement="floating" required [(ngModel)]="description"
+            placeholder="Masukkan Deskripsi Inventaris" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Quantity' labelPlacement="floating" required [(ngModel)]="quantity" type="number" min="0"></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-button type="button" (click)="tambahInventory()" color="success" shape="full" expand="block">
+              Tambah Inventaris
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal Edit -->
+  <ion-modal [isOpen]="modal_edit">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Batal</ion-button>
+          </ion-buttons>
+          <ion-title>Edit Inventaris</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input label="Nama Inventaris" labelPlacement="floating" required [(ngModel)]="nama"
+            placeholder="Masukkan Nama Inventaris" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Deskripsi Inventaris' labelPlacement="floating" required [(ngModel)]="description"
+            placeholder="Masukkan Deskripsi Inventaris" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Quantity' labelPlacement="floating" required [(ngModel)]="quantity" type="number" min="0"></ion-input>
+        </ion-item>
+        <ion-input required [(ngModel)]="id" type="hidden"></ion-input>
+        <ion-row>
+          <ion-col>
+            <ion-button type="button" (click)="editInventory()" color="tertiary" shape="full" expand="block">
+              Edit Inventaris
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
